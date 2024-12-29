@@ -3,7 +3,7 @@ using Volo.Abp.Domain.Entities;
 
 namespace Identity.Users;
 
-public class User : AggregateRoot<Guid>
+public class User : Entity<Guid>
 {
     protected User() { }
 

@@ -54,5 +54,5 @@ public class OpenIddictApplicationController
 public class TestApiController : AuthorizationCenterManageController
 {
     [HttpGet]
-    public string Get() => "test";
+    public string Get() => CurrentUser.Name ?? "找不到Name！";
 }

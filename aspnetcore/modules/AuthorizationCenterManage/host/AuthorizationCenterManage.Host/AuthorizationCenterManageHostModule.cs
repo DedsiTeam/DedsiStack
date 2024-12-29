@@ -68,14 +68,13 @@ public class AuthorizationCenterManageHostModule : AbpModule
             .AddValidation(options =>
             {
                 options.SetIssuer("http://localhost:10086/");
-                // options.AddAudiences("BookStore");
+                options.AddAudiences("AuthorizationCenterManage.Host");
                 
                 options.UseIntrospection()
                     .SetClientId("AuthorizationCenterManage.Host")
                     .SetClientSecret("FFA8E1D2-9A97-BFBF-865A-3A1722D3F3BD");
 
                 options.UseSystemNetHttp();
-
                 options.UseAspNetCore();
             });
 

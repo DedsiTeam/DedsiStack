@@ -1,14 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OpenIddict.Abstractions;
+﻿using Identity;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Autofac;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.Modularity;
 
 namespace AuthorizationCenter.Host;
 
 
 [DependsOn(
+    // Identity
+    typeof(IdentityUseCaseModule),
+    
+    typeof(AbpEntityFrameworkCoreSqlServerModule),
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAutofacModule)
 )]
@@ -18,10 +24,15 @@ public class AuthorizationCenterHostModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
         
+        Configure<AbpDbContextOptions>(options =>
+        {
+            options.UseSqlServer();
+        });
+
         context.Services
             .AddDbContext<AuthorizationCenterDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("Default"));
+                options.UseSqlServer(configuration.GetConnectionString("AuthorizationCenterDB"));
                 options.UseOpenIddict();
             });
 
@@ -54,11 +65,12 @@ public class AuthorizationCenterHostModule : AbpModule
                      .AllowDeviceAuthorizationFlow()
                      .AllowNoneFlow();
 
-                 options.RegisterScopes(OpenIddictConstants.Scopes.OpenId, OpenIddictConstants.Scopes.Email, OpenIddictConstants.Scopes.Profile, OpenIddictConstants.Scopes.Phone, OpenIddictConstants.Scopes.Roles, OpenIddictConstants.Scopes.Address, OpenIddictConstants.Scopes.OfflineAccess);
-
                  options
                      .AddDevelopmentEncryptionCertificate()
                      .AddDevelopmentSigningCertificate();
+
+                 // 禁用加密
+                 // options.DisableAccessTokenEncryption();
 
                  options.UseAspNetCore()
                      .EnableAuthorizationEndpointPassthrough()

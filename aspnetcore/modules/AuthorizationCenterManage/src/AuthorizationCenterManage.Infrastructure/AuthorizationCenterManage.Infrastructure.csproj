@@ -16,8 +16,4 @@
         <PackageReference Include="Dedsi.CleanArchitecture.Infrastructure" Version="$(DedsiFrameworkVersion)" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Repositories\" />
-    </ItemGroup>
-
 </Project>
