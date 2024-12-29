@@ -1,6 +1,8 @@
 ﻿using AuthorizationCenterManage.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using OpenIddict.Validation.AspNetCore;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
@@ -41,12 +43,44 @@ public class AuthorizationCenterManageHostModule : AbpModule
                 dbConfigContext.UseSqlServer();
             });
         });
-        
+
+        #region OpenIddict
         context.Services.AddDbContext<OpenIddictEfCoreDbContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString("Default"));
             options.UseOpenIddict();
         });
+        
+        context.Services.AddAuthentication(options =>
+        {
+            options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+        });
+
+
+        context.Services
+            .AddOpenIddict()
+            .AddCore(options =>
+            {
+                options
+                    .UseEntityFrameworkCore()
+                    .UseDbContext<OpenIddictEfCoreDbContext>();
+            })
+            .AddValidation(options =>
+            {
+                options.SetIssuer("http://localhost:10086/");
+                // options.AddAudiences("BookStore");
+                
+                options.UseIntrospection()
+                    .SetClientId("AuthorizationCenterManage.Host")
+                    .SetClientSecret("FFA8E1D2-9A97-BFBF-865A-3A1722D3F3BD");
+
+                options.UseSystemNetHttp();
+
+                options.UseAspNetCore();
+            });
+
+        #endregion
+
         
         // 日志
         Configure<AbpAuditingOptions>(options =>

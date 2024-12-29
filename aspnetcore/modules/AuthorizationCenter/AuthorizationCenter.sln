@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "host", "host", "{257B1256-BB21-4087-9FB4-D3A58910E3A7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationCenter.Host", "host\AuthorizationCenter.Host\AuthorizationCenter.Host.csproj", "{052CA72A-67CD-4913-84ED-65846D35EB8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationCenter.Host", "AuthorizationCenter.Host\AuthorizationCenter.Host.csproj", "{7CE880BE-5311-4E19-A3C9-DA51286396DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,12 +8,11 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{052CA72A-67CD-4913-84ED-65846D35EB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{052CA72A-67CD-4913-84ED-65846D35EB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{052CA72A-67CD-4913-84ED-65846D35EB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{052CA72A-67CD-4913-84ED-65846D35EB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CE880BE-5311-4E19-A3C9-DA51286396DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CE880BE-5311-4E19-A3C9-DA51286396DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CE880BE-5311-4E19-A3C9-DA51286396DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CE880BE-5311-4E19-A3C9-DA51286396DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{052CA72A-67CD-4913-84ED-65846D35EB8E} = {257B1256-BB21-4087-9FB4-D3A58910E3A7}
 	EndGlobalSection
 EndGlobal
