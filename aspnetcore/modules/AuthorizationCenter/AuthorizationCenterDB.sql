@@ -1,8 +1,8 @@
 create database [AuthorizationCenterDB]
-go;
+go
 
 use [AuthorizationCenterDB]
-go;
+go
 
 
 -- ----------------------------

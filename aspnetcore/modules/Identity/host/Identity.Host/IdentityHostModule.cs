@@ -83,27 +83,6 @@ public class IdentityHostModule : AbpModule
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Identity.HttpApi.xml"), true);
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Identity.UseCase.xml"), true);
         });
-        
-        // 添加JWT身份验证服务
-        context.Services
-            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                var secretByte = Encoding.UTF8.GetBytes(configuration["JwtOptions:SecretKey"]!);
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidIssuer = configuration["JwtOptions:Issuer"],
-
-                    ValidateAudience = true,
-                    ValidAudience = configuration["JwtOptions:Audience"],
-
-                    ValidateLifetime = true,
-
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(secretByte)
-                };
-            });
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -134,13 +113,13 @@ public class IdentityHostModule : AbpModule
         });
         
         app.UseAuthentication();
-        app.UseAuthorization();
+        // app.UseAuthorization();
 
         app.UseAuditing();
         app.UseConfiguredEndpoints(endpoints =>
         {
             // AuthorizeAttribute
-            endpoints.MapControllers().RequireAuthorization();
+            // endpoints.MapControllers().RequireAuthorization();
         });
 
     }

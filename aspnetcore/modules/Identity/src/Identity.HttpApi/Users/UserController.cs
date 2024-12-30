@@ -54,6 +54,6 @@ public class UserController(IDedsiMediator dedsiMediator, IUserQuery userQuery) 
     [HttpGet("{id}")]
     public Task<UserDto> GetAsync(Guid id)
     {
-        return userQuery.GetByidAsync(id);
+        return userQuery.GetByidAsync(id, HttpContext.RequestAborted);
     }
 }

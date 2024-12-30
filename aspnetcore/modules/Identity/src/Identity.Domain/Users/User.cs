@@ -7,7 +7,7 @@ public class User : Entity<Guid>
 {
     protected User() { }
 
-    public User(Guid id, string userName, string account, string passWord, string email) : base(id)
+    public User(Guid id, string userName, string account, string passWord, string? email) : base(id)
     {
         UserName = userName;
         Account = account;
@@ -36,9 +36,9 @@ public class User : Entity<Guid>
         PassWord = Check.NotNullOrWhiteSpace(newPassWord, nameof(newPassWord));
     }
 
-    public string Email { get; private set; }
+    public string? Email { get; private set; }
 
-    public void ChangeEmail(string newEmail)
+    public void ChangeEmail(string? newEmail)
     {
         Email = Check.NotNullOrWhiteSpace(newEmail, nameof(newEmail));
     }
