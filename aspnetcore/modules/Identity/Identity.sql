@@ -17,7 +17,7 @@ CREATE TABLE [Identity].[Users] (
   [UserName] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
   [Account] nvarchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
   [PassWord] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
-  [Email] nvarchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL
+  [Email] nvarchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 )
 GO
 
