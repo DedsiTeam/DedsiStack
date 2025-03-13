@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.SqlServer;
+using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Json;
 using Volo.Abp.Modularity;
 
@@ -19,12 +20,18 @@ namespace DedsiStack;
     // ProjectName
     typeof(DedsiStackHttpApiModule),
 
-    typeof(AbpEntityFrameworkCoreSqlServerModule),
+    typeof(AbpEntityFrameworkCoreMySQLModule),
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAutofacModule)
 )]
 public class DedsiStackHostModule : AbpModule
 {
+    
+    private readonly string[] _useCaseModuleNames =
+    [
+        "DedsiAuthorization.UseCase"
+    ];
+    
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
@@ -40,7 +47,7 @@ public class DedsiStackHostModule : AbpModule
                 {
                     dbConfigContext.DbContextOptions.LogTo(Serilog.Log.Information, new[] { DbLoggerCategory.Database.Command.Name }).EnableSensitiveDataLogging();
                 }
-                dbConfigContext.UseSqlServer();
+                dbConfigContext.UseMySQL();
             });
         });
         
@@ -106,6 +113,9 @@ public class DedsiStackHostModule : AbpModule
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtOptions:SecurityKey"]!))
                 };
             });
+        
+        // MediatR
+        context.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(_useCaseModuleNames.Select(Assembly.Load).ToArray()));
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

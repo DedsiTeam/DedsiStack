@@ -1,10 +1,12 @@
-﻿using DedsiAuthorization.Openiddict;
+﻿using System.Reflection;
+using DedsiAuthorization.Openiddict;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Json;
 using Volo.Abp.Modularity;
 
@@ -13,11 +15,18 @@ namespace DedsiStack;
 [DependsOn(
     typeof(DedsiAuthorizationOpeniddictModule),
     
+    typeof(AbpEntityFrameworkCoreMySQLModule),
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAutofacModule)
 )]
 public class DedsiStackAuthorizationCenterModule: AbpModule
 {
+    
+    private readonly string[] _useCaseModuleNames =
+    [
+        "DedsiAuthorization.UseCase"
+    ];
+    
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var hostEnvironment = context.Services.GetAbpHostEnvironment();
@@ -34,7 +43,7 @@ public class DedsiStackAuthorizationCenterModule: AbpModule
                         .LogTo(Serilog.Log.Information, [DbLoggerCategory.Database.Command.Name])
                         .EnableSensitiveDataLogging();
                 }
-                dbConfigContext.UseSqlServer();
+                dbConfigContext.UseMySQL();
             });
         });
 
@@ -62,6 +71,9 @@ public class DedsiStackAuthorizationCenterModule: AbpModule
                     .AllowAnyMethod();
             });
         });
+        
+        // MediatR
+        context.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(_useCaseModuleNames.Select(Assembly.Load).ToArray()));
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
