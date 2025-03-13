@@ -3,4 +3,4 @@ ENV TZ="Asia/Shanghai"
 ENV ASPNETCORE_ENVIRONMENT=Production
 WORKDIR /app
 COPY . .
-ENTRYPOINT ["dotnet", "DedsiStack.Host.dll"]
+ENTRYPOINT ["dotnet", "DedsiStack.Public.Gateway.dll"]

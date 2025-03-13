@@ -4,13 +4,7 @@ namespace DedsiStack;
 
 public class DedsiStackDomainOptions : DedsiCleanArchitectureDomainOptions
 {
-    public const string ApplicationName = "ProjectName";
-    
-    public const string MobileApplicationName = "ProjectName.Mobile";
-    
-    public const string ConnectionStringName = "ProjectNameDB";
-    
-    public const string DbSchemaName  = "ProjectName";
+    public const string ApplicationName = "DedsiStack";
 
-    public const string DbTablePrefix = "ProjectName";
+    public const string ConnectionStringName = "DedsiStackDB";
 }

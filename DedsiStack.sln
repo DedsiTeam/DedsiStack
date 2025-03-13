@@ -37,6 +37,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiAuthorization.Openiddi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiStack.AuthorizationCenter", "host\DedsiStack.AuthorizationCenter\DedsiStack.AuthorizationCenter.csproj", "{D0C2EF32-D62B-4B11-9F73-BC4932BECA57}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gateways", "gateways", "{C811E4E1-D64D-4CBC-A849-BC48CC47B37A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiStack.Public.Gateway", "gateways\DedsiStack.Public.Gateway\DedsiStack.Public.Gateway.csproj", "{85253247-479B-4EF0-A045-C802F63A11F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsiStack.Interior.Gateway", "gateways\DedsiStack.Interior.Gateway\DedsiStack.Interior.Gateway.csproj", "{20AEFE2C-F98C-4124-9989-2AD8BA2942C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +97,14 @@ Global
 		{D0C2EF32-D62B-4B11-9F73-BC4932BECA57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0C2EF32-D62B-4B11-9F73-BC4932BECA57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0C2EF32-D62B-4B11-9F73-BC4932BECA57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85253247-479B-4EF0-A045-C802F63A11F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85253247-479B-4EF0-A045-C802F63A11F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85253247-479B-4EF0-A045-C802F63A11F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85253247-479B-4EF0-A045-C802F63A11F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20AEFE2C-F98C-4124-9989-2AD8BA2942C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20AEFE2C-F98C-4124-9989-2AD8BA2942C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20AEFE2C-F98C-4124-9989-2AD8BA2942C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20AEFE2C-F98C-4124-9989-2AD8BA2942C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,5 +124,7 @@ Global
 		{DE9017C4-DFD5-43CA-90AB-094038FE6266} = {ABFEDB23-6DD0-4A87-ABE1-936A9A04DF0F}
 		{2D7739D4-3085-4FEB-BDF2-EED3061B430F} = {DE9017C4-DFD5-43CA-90AB-094038FE6266}
 		{D0C2EF32-D62B-4B11-9F73-BC4932BECA57} = {BC04B74F-7CAC-4ACC-BFD9-6DED68564777}
+		{85253247-479B-4EF0-A045-C802F63A11F1} = {C811E4E1-D64D-4CBC-A849-BC48CC47B37A}
+		{20AEFE2C-F98C-4124-9989-2AD8BA2942C9} = {C811E4E1-D64D-4CBC-A849-BC48CC47B37A}
 	EndGlobalSection
 EndGlobal

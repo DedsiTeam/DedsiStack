@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -93,27 +92,7 @@ public class DedsiStackHostModule : AbpModule
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "DedsiStack.HttpApi.xml"), true);
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "DedsiStack.UseCase.xml"), true);
         });
-        
-        // 添加JWT身份验证服务
-        context.Services
-            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateLifetime = true,
-                    
-                    ValidateIssuer = true,
-                    ValidIssuer = configuration["JwtOptions:Issuer"],
 
-                    ValidateAudience = true,
-                    ValidAudience = configuration["JwtOptions:Audience"],
-
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtOptions:SecurityKey"]!))
-                };
-            });
-        
         // MediatR
         context.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(_useCaseModuleNames.Select(Assembly.Load).ToArray()));
     }
