@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using DedsiAuthorization;
 using DedsiAuthorization.Openiddict;
+using DedsiAuthorization.Openiddict.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
@@ -29,9 +31,16 @@ public class DedsiStackAuthorizationCenterModule: AbpModule
     
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
+        var configuration = context.Services.GetConfiguration();
         var hostEnvironment = context.Services.GetAbpHostEnvironment();
 
         // 数据库
+        context.Services.AddDbContext<CrtadgAiAuthorizationOpeniddictDbContext>(options =>
+        {
+            options.UseMySql(configuration.GetConnectionString(DedsiAuthorizationDomainOptions.ConnectionStringName), MySqlServerVersion.LatestSupportedServerVersion);
+            
+            options.UseOpenIddict();
+        });
         Configure<AbpDbContextOptions>(options =>
         {
             options.Configure(dbConfigContext =>

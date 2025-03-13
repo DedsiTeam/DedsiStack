@@ -11,4 +11,8 @@
         <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="$(OpenIddictVersion)" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\dedsiAuthorization\DedsiAuthorization.Contracts\DedsiAuthorization.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>
