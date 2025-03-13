@@ -1,0 +1,1 @@
+### Openiddicthttps://documentation.openiddict.com/guides/getting-started/creating-your-own-server-instance###http://localhost:10086/.well-known/openid-configuration

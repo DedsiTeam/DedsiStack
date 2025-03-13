@@ -1,0 +1,7 @@
+<Project>
+    <PropertyGroup>
+        <OpenIddictVersion>6.1.1</OpenIddictVersion>
+        <DedsiFrameworkVersion>9.1.0</DedsiFrameworkVersion>
+        <AbpFrameworkVersion>9.1.0</AbpFrameworkVersion>
+    </PropertyGroup>
+</Project>

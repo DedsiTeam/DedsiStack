@@ -1,0 +1,5 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace DedsiAuthorization.Openiddict.EntityFrameworkCore;
+
+public class CrtadgAiAuthorizationOpeniddictDbContext(DbContextOptions<CrtadgAiAuthorizationOpeniddictDbContext> options): DbContext(options);
